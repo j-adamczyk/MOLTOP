@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "moltop"
+version = "1.0.0"
+description = ""
+authors = [""]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.*"
+
+# main computational libraries
+grakel = "0.1.10"
+feature-engine = "1.6.2"
+networkit = "10.1"
+networkx = "3.2.1"
+numpy = "1.26.2"
+pandas = "2.1.4"
+rdkit = "2023.9.4"
+scikit-learn = "1.3.2"
+scipy = "1.11.4"
+torch = "2.1.2"
+torch-geometric = "2.4.0"
+
+# data loading, plotting and utils
+black = "23.12.1"
+kaleido = "0.2.1"
+matplotlib = "3.8.2"
+ogb = "1.3.6"
+plotly = "5.18.0"
+tqdm = "4.66.1"
+
+[[tool.poetry.source]]
+name = "torch"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
