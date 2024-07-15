@@ -3,8 +3,7 @@ import os
 
 import numpy as np
 import pandas as pd
-from rdkit.Chem import MolFromSmiles
-from rdkit.Chem.rdFingerprintGenerator import GetMorganGenerator
+from skfp.fingerprints import ECFPFingerprint
 from sklearn.ensemble import RandomForestClassifier
 
 from data_loading import (
@@ -62,22 +61,18 @@ def perform_experiment(
     dataset_path = os.path.join(
         DATASETS_DIR, dataset_name.replace("-", "_"), "mapping", "mol.csv.gz"
     )
-    smiles_list = pd.read_csv(dataset_path)["smiles"]
+    smiles = pd.read_csv(dataset_path)["smiles"].values
 
     train_idxs, test_idxs = load_dataset_splits(
         dataset_name, use_valid_for_testing=False, use_full_training_data=True
     )
 
-    gen = GetMorganGenerator()
-    X = [gen.GetFingerprintAsNumPy(MolFromSmiles(smi)) for smi in smiles_list]
+    smiles_train = smiles[train_idxs]
+    smiles_test = smiles[test_idxs]
 
-    X_train = X[train_idxs, :]
-    X_test = X[test_idxs, :]
-
-    # make sure we have no NaN values
-    means = np.nanmean(X_train, axis=0)
-    X_train = np.where(np.isnan(X_train), means, X_train)
-    X_test = np.where(np.isnan(X_test), means, X_test)
+    fp = ECFPFingerprint()
+    X_train = fp.transform(smiles_train)
+    X_test = fp.transform(smiles_test)
 
     y = np.array(dataset.y)
     if task_type == "classification":

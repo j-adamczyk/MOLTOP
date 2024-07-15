@@ -1,6 +1,11 @@
 # Molecular Topological Profile (MOLTOP)
 
 Code for paper "Molecular Topological Profile (MOLTOP) - Simple and Strong Baseline for Molecular Graph Classification"
+J. Adamczyk, W. Czech.
+
+In this paper, we present Molecular Topological Profile (MOLTOP), a strong baseline for molecular graph classification.
+It is based on our previous Local Topological Profile (LTP), but introduces atom and bond features, and uses different
+topological descriptors.
 
 Install requirements using one of:
 - Poetry and `poetry.lock` (recommended)
@@ -15,7 +20,9 @@ To reproduce experiment results from the main paper, run:
 - results on LRGB peptides-func: `python main_lrgb.py`
 - feature importances: `python main_feature_importances.py`
 
-For specific settings and CLI arguments, see the respective scripts.
+For specific settings and CLI arguments, see the respective scripts. If you want to use MOLTOP for new datasets,
+`feature_extraction.py` contains all code for calculating MOLTOP features for individual graphs. However, next steps,
+like dropping constant features and setting Random Forest hyperparameters, are in `main_moltop.py`.
 
 For reproduce results and examples from the supplementary material, run:
 - DPCC and Paclitaxel examples: `python scripts/dpcc_and_paclitaxel.py`
