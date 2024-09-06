@@ -1,7 +1,7 @@
 # Molecular Topological Profile (MOLTOP)
 
 Code for paper "Molecular Topological Profile (MOLTOP) - Simple and Strong Baseline for Molecular Graph Classification"
-J. Adamczyk, W. Czech.
+J. Adamczyk, W. Czech. ([ArXiv](https://arxiv.org/abs/2407.12136))
 
 In this paper, we present Molecular Topological Profile (MOLTOP), a strong baseline for molecular graph classification.
 It is based on our previous Local Topological Profile (LTP), but introduces atom and bond features, and uses different
